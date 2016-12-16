@@ -1,0 +1,52 @@
+﻿@model MvcMovie.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>รายละเอียดปัญหา</h2>
+
+<div width="50">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd>
+            <table>
+                <tr>
+                    <td width="350">@*Html.DisplayFor(model => model.Rating)*@
+                    @Html.TextAreaFor(model => model.Rating, new { @class = "form-control", @rows = 10 , @readonly = true })
+                    </td>
+                </tr>
+            </table>
+        </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+</dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "adminLogin";
+}
+
+<center>
+
+                @using (Html.BeginForm("adminLogin", "qa", FormMethod.Post))
+            {
+                    <br/>
+                    <br />
+                    <br />
+                               @Html.Label("Admin Login", htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    <br />
+                               @*Html.Label("User ID", htmlAttributes: new { @class = "control-label" })*@
+                               @Html.Editor("userId", new { htmlAttributes = new { @class = "form-control", placeholder = "User ID" } })
+                               <br />
+                               @*Html.Label("Password", htmlAttributes: new { @class = "control-label" })*@
+                               @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", placeholder = "Password", @type = "password" } })
+                       <br/>
+                                <input type="submit" value="Login" class="btn btn-default" />
+                                <br/>
+                                <br />
+                }
+    </center>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "admin";
+}
+<div><center><h1 class="control-label">Administrator<span class="glyphicon glyphicon-user"></span></h1></center></div><br>
+
+<div class="col-md-10">
+    <button type="button" class="btn btn-default">@Html.ActionLink("Ask New Question", "Create")</button>
+</div>
+<div class="col-md-1">
+    <button type="button" class="btn btn-danger">@Html.ActionLink("Logout", "logoutsession")</button>
+</div><br><br>
+<p>
+
+
+    @using (Html.BeginForm("admin", "qa", FormMethod.Get))
+    {
+
+        
+        @Html.Label("หมวดหมู่:", htmlAttributes: new { @class = "control-label col-sm-1" })
+        @Html.DropDownList("movieGenre", (SelectList)ViewBag.movieGenre, "All", new { @class = "form-control col-sm-1" })
+        <br><br><div>
+            @Html.Label("สถานะ:", htmlAttributes: new { @class = "control-label col-sm-1" })
+            @Html.DropDownList("movieStatus", (SelectList)ViewBag.movieStatus, "All", new { @class = "form-control col-sm-1" })
+
+            @Html.Label("ปัญหา:", htmlAttributes: new { @class = "control-label col-sm-1" })
+            @Html.Editor("SearchString", new { htmlAttributes = new { @class = "form-control col-sm-1", placeholder = "Ex: ร้านข้าวใกล้มอ.", @type = "text" } })
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div><br><br>
+    }
+</p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @if (item.Status == "ยังไม่ได้รับคำตอบ")
+                    {
+                        <font color="red">@Html.DisplayFor(modelItem => item.Status)</font>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Status)
+                    }
+
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Details", "Details", new { id = item.ID })
+                        </button>
+                            <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.ID })</button>
+</td>
+            </tr>
+        }
+
+    </table>

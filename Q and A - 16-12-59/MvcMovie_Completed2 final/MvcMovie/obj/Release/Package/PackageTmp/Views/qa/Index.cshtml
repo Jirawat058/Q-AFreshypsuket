@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <div><center><h1 class="control-label">Q&A Freshy</h1></center></div><br><br>
+
+    <p>
+        <button type="button" class="btn btn-default">@Html.ActionLink("Ask New Question", "Create")</button>
+
+        @using (Html.BeginForm("Index", "qa", FormMethod.Get))
+        {
+            @*<p>
+                      หมวดหมู่: @Html.DropDownList("movieGenre", "All")
+                      ปัญหา: @Html.TextBox("SearchString")
+
+                <input type="submit" value="Filter" />
+                  </p>*@
+            @Html.Label("หมวดหมู่:", htmlAttributes: new { @class = "control-label col-sm-1" })
+            @*@Html.DropDownList("movieGenre", "All")*@
+            @Html.DropDownList("movieGenre", (SelectList)ViewBag.movieGenre, "All", new { @class = "form-control col-sm-1" })
+            @Html.Label("ปัญหา:", htmlAttributes: new { @class = "control-label col-sm-1" })
+            @Html.Editor("SearchString", new { htmlAttributes = new { @class = "form-control col-sm-1", placeholder = "Ex: ร้านข้าวใกล้มอ.", @type = "text" } })
+            <input type="submit" value="Filter" class="btn btn-default" />
+        }
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.ID })</button>
+                </td>
+            </tr>
+        }
+
+    </table>

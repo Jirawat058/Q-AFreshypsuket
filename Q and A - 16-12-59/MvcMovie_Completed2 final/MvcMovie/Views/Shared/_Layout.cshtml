@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Q&A Freshy</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background-color: #EFEFEF;
+        }
+
+        #color {
+            background-color: #75cbc6;
+        }
+
+        #foo {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" id="color">
+        <div class="container" id="color">
+            <div class="navbar-header">
+               @Html.ActionLink("Q&A Freshy", "Index", "qa", 
+               new { @class = "navbar-brand" })
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Admin", "adminLogin", "qa")</li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Q&A Freshy - PSU, Phuket</</p>
+        </footer>
+    </div>
+    <div id="foo">        
+        <!--img src="~/Content/img/logo.png" alt="Sample Image" style="width:200px auto" /-->
+        </div> 
+             @Scripts.Render("~/bundles/jquery")
+             @Scripts.Render("~/bundles/bootstrap")
+             @RenderSection("scripts", required: false)
+</body>
+</html>
